@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Go Registration - Register as a Trainer</title>
-    <link rel="stylesheet" href="./registration/registration.css">
+    <title>Login and Registration Form in HTML & CSS | CodingLab</title>
+    <link rel="stylesheet" href="./registration//registration.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body background="bg.jpg">
-    <header>
-        <h1>Join the Adventure - Register as a Trainer!</h1>
-    </header>
-    <main>
-        <form id="register-form">
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" name="confirm-password" required>
-            <label for="trainer-id">Trainer ID:</label>
-            <input type="text" id="trainer-id" name="trainer-id" readonly>
-            <label for="ign">IGN (In-Game Name):</label>
-            <input type="text" id="ign" name="ign" required>
-            <a href="index.html">Become a Trainer!</a>
-        </form>
-    </main>
-    <script src="./registration/registration.js"></script>
+<body>
+    <div class="container">
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="front">
+                <header>
+                    <h1>Join the Adventure - Register as a Trainer!</h1>
+                </header>
+                <main>
+                    <form id="register-form">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                        <label for="confirm-password">Confirm Password:</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <label for="trainer-id">Trainer ID:</label>
+                        <input type="text" id="trainer-id" name="trainer-id" readonly>
+                        <label for="ign">IGN (In-Game Name):</label>
+                        <input type="text" id="ign" name="ign" required>
+                        <input type="submit" value="Become a Trainer">
+                    </form>
+                </main>
+            </div>
+            <div class="back">
+                <!-- Placeholder for back content, if any -->
+            </div>
+        </div>
+    </div>
 </body>
 </html>

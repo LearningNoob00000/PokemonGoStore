@@ -28,7 +28,26 @@
         <i class="fas fa-search" id="search-icon"></i>
         <a href="cart.html" class="fas fa-shopping-cart"></a>
     </div>
-    <a href="registration.html" class="sign-icons">sign up</a>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const profile = localStorage.getItem("CurrentLogin");
+
+            if (profile) {
+                // If profile exists (user is logged in), show sign out and profile links
+                document.querySelector('.icons').innerHTML = `
+                    <a href="logout.html" class="sign-icons">Logout</a>
+                    <a href="profile.html" class="sign-icons">Profile</a>
+                `;
+            } else {
+                // If profile doesn't exist (user is not logged in), show sign up and sign in links
+                document.querySelector('.icons').innerHTML = `
+                    <a href="registration.html" class="sign-icons">Sign Up</a>
+                    <a href="registration.html" class="sign-icons">Sign In</a>
+                `;
+            }
+        });
+    </script>
+    
 </header>
 
 <!-- search form -->
@@ -49,7 +68,7 @@
                     <h3>Pikachu</h3>
                     <p>
                         Pikachu is an iconic Electric-type Pokémon known for its yellow fur, red cheeks with electric sacs, and a lightning bolt-shaped tail. It is the mascot of the Pokémon franchise and one of the most recognizable characters worldwide. Pikachu evolves from Pichu and evolves into Raichu. It is known for its agility, cuteness, and its signature move, Thunderbolt.</p>
-                    <a href="#" class="btn">buy Now!</a>
+                        <button id="buyButton" class="btn">Buy Now!</button>
                 </div>
                 <div class="image">
                     <img src="./images/pikachu.png" alt="">
@@ -60,7 +79,7 @@
                     <span>Our Famous Pokemons</span>
                     <h3>bulbasur</h3>
                     <p>Bulbasaur is a dual-type Grass/Poison Pokémon characterized by its blue-green skin, bulb on its back, and large, bright red eyes. It is the first Pokémon in the Pokédex and one of the starter Pokémon in the original Pokémon games. Bulbasaur evolves into Ivysaur and then into Venusaur. It is known for its balanced stats, ability to learn a variety of moves, and its supportive role in battles.</p>
-                    <a href="#" class="btn">Buy Now!</a>
+                    <button id="buyButton" class="btn">Buy Now!</button>
                 </div>
                 <div class="image">
                     <img src="./images/bulb.png" alt="">
@@ -72,7 +91,7 @@
                     <span>Our Famous Pokemons</span>
                     <h3>Charizard</h3>
                     <p>Charizard is a dual-type Fire/Flying Pokémon, resembling a large, orange dragon with wings and a flame-tipped tail. It is the final evolution of Charmander, one of the starter Pokémon in the original games. Charizard is known for its immense power, ability to breathe fire, and its iconic appearance. It is a fan-favorite Pokémon and often featured prominently in Pokémon media and merchandise.</p>
-                    <a href="#" class="btn">Order Now!</a>
+                    <button id="buyButton" class="btn">Buy Now!</button>
                 </div>
                 <div class="image">
                     <img src="./images/chars.png" alt="">
@@ -103,7 +122,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>₱550</span>
-            <a href="#" class="btn">add to cart</a>
+            <button id="buyButton" class="btn">add to cart</button>
         </div>
 
 
@@ -120,7 +139,7 @@
                 <i class="fas fa-star"></i>
             </div>
             <span>₱1350</span>
-            <a href="#" class="btn">add to cart</a>
+            <button id="buyButton" class="btn">add to cart</button>
         </div>
 
         
@@ -137,7 +156,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>₱3000</span>
-            <a href="#" class="btn">add to cart</a>
+            <button id="buyButton" class="btn">add to cart</button>
         </div>
 
         
@@ -154,7 +173,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>₱5500</span>
-            <a href="#" class="btn">add to cart</a>
+            <button id="buyButton" class="btn">add to cart</button>
         </div>
 
         
@@ -171,7 +190,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>₱11,000</span>
-            <a href="#" class="btn">add to cart</a>
+            <button id="buyButton" class="btn">add to cart</button>
         </div>
 
 </section>
@@ -276,19 +295,63 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./homepage/homepage.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const buyButtons = document.querySelectorAll('.btn');
+            // Define an object to map product names to image paths
+            const imagePaths = {
+                "Pikachu": "./images/pikachu.png",
+                "bulbasur": "./images/bulb.png",
+                "Charizard": "./images/chars.png",
+                "500 Pokecoins": "./pokemon img/500coins.webp",
+                "1300 Pokecoins": "./pokemon img/1500coins.webp",
+                "2500 pokecoins": "./pokemon img/1200 pokécoins.webp",
+                "5000 pokecoins": "./pokemon img/3000coins.webp",
+                "10000 pokecoins": "./pokemon img/10000coins.webp"
+            };
+
+            buyButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const productBox = this.parentElement;
+                    const productName = productBox.querySelector('h3').textContent;
+                    const productPrice = productBox.querySelector('span').textContent;
+                    // Retrieve image path from the imagePaths object
+                    const productImage = imagePaths[productName];
+                    
+                    // Assuming you have already defined the product prices in your script
+                    const prices = {
+                        "Pikachu": "₱1500",
+                        "bulbasur": "₱1000",
+                        "Charizard": "₱2000",
+                        "500 Pokecoins": "₱550",
+                        "1300 Pokecoins": "₱1350",
+                        "2500 pokecoins": "₱3000",
+                        "5000 pokecoins": "₱5500",
+                        "10000 pokecoins": "₱11000"
+                    };
+        
+                    // Save to local storage
+                    const cartItem = {
+                        name: productName,
+                        price: prices[productName],
+                        image: productImage
+                    };
+        
+                    // Retrieve existing cart items or initialize an empty array
+                    let cartItems = localStorage.getItem('CartItems') ? localStorage.getItem('CartItems').split(';') : [];
+                    cartItems.push(`${cartItem.name},${cartItem.price},${cartItem.image}`);
+                    localStorage.setItem('CartItems', cartItems.join(';'));
+        
+                    // Optional: Provide feedback to the user (e.g., show a message)
+                    alert('Item added to cart successfully!');
+                    window.location.href = "./cart.html"
+                });
+            });
+        });
+    </script>
 </body>
 </html>
