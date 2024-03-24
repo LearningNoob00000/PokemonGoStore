@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Clear existing content of cartContainer
     const cartContainer = document.getElementById('cart-container');
+    const playerEmail = localStorage.getItem("CurrentLogin");
     cartContainer.innerHTML = '';
 
     // Retrieve cart items from local storage
-    let cartItems = localStorage.getItem('CartItems');
+    let cartItems = localStorage.getItem(`${playerEmail}CartItems`);
     if (cartItems) {
         // Split the cart items string into an array
         cartItems = cartItems.split(';');

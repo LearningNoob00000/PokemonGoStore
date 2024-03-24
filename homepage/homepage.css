@@ -151,7 +151,19 @@ header .icons #menu-bars {
     color: #fff;
     background: var(--green);
 }
+.logout {
+    font-size: 1.7rem;
+    text-decoration: none;
+    color: var(--black);
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: var(--light-color);
+}
 
+.logout:hover {
+    color: #fff;
+    background: var(--green);
+}
 
 
 #search-form {

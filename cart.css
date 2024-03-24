@@ -109,3 +109,7 @@ footer {
 .checkout-button button:hover {
     background-color: #d32f2f;
 }
+.custom-class {
+    color: #fff;
+    background: var(--green);
+}

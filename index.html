@@ -28,21 +28,24 @@
         <i class="fas fa-search" id="search-icon"></i>
         <a href="cart.html" class="fas fa-shopping-cart"></a>
     </div>
+    <div class="iconProfile">
+
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const profile = localStorage.getItem("CurrentLogin");
 
             if (profile) {
                 // If profile exists (user is logged in), show sign out and profile links
-                document.querySelector('.icons').innerHTML = `
-                    <a href="logout.html" class="sign-icons">Logout</a>
+                document.querySelector('.iconProfile').innerHTML = `
+                    <a href="index.html" class="logout">Logout</a>
                     <a href="profile.html" class="sign-icons">Profile</a>
                 `;
             } else {
                 // If profile doesn't exist (user is not logged in), show sign up and sign in links
-                document.querySelector('.icons').innerHTML = `
+                document.querySelector('.iconProfile').innerHTML = `
                     <a href="registration.html" class="sign-icons">Sign Up</a>
-                    <a href="registration.html" class="sign-icons">Sign In</a>
+                    <a href="login.html" class="sign-icons">Sign In</a>
                 `;
             }
         });
@@ -316,6 +319,7 @@
             buyButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
                     event.preventDefault();
+                    const playerEmail = localStorage.getItem("CurrentLogin");
                     const productBox = this.parentElement;
                     const productName = productBox.querySelector('h3').textContent;
                     const productPrice = productBox.querySelector('span').textContent;
@@ -342,14 +346,25 @@
                     };
         
                     // Retrieve existing cart items or initialize an empty array
-                    let cartItems = localStorage.getItem('CartItems') ? localStorage.getItem('CartItems').split(';') : [];
+                    let cartItems = localStorage.getItem(`${playerEmail}CartItems`) ? localStorage.getItem(`${playerEmail}CartItems`).split(';') : [];
                     cartItems.push(`${cartItem.name},${cartItem.price},${cartItem.image}`);
-                    localStorage.setItem('CartItems', cartItems.join(';'));
+                    localStorage.setItem(`${playerEmail}CartItems`, cartItems.join(';'));
         
                     // Optional: Provide feedback to the user (e.g., show a message)
                     alert('Item added to cart successfully!');
                     window.location.href = "./cart.html"
                 });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const logoutButton = document.querySelector('.logout');
+    
+            logoutButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                localStorage.removeItem('CurrentLogin');
+                window.location.href = 'index.html';
             });
         });
     </script>

@@ -14,10 +14,10 @@
 </head>
 <body>
     <header>
-        <a href="./index.html" class="logo"><i class="fas fa-store-alt"></i>pokemon go store</a>
+        <a href="index.html" class="logo"><i class="fas fa-store-alt"></i>pokemon go store</a>
         
         <nav class="navbar">
-            <a class="active" href="index.html">home</a>
+            <a  href="index.html">home</a>
             <a href="#store">store</a>
             <a href="#about"> About</a>
             <a href="#review">review</a>
@@ -27,9 +27,31 @@
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
             <i class="fas fa-search" id="search-icon"></i>
-            <a href="cart.html" class="fas fa-shopping-cart"></a>
+            <a href="cart.html" class="fas fa-shopping-cart custom-class"></a>
         </div>
-        <a href="registration.html" class="sign-icons">sign up</a>
+        <div class="iconProfile">
+    
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const profile = localStorage.getItem("CurrentLogin");
+    
+                if (profile) {
+                    // If profile exists (user is logged in), show sign out and profile links
+                    document.querySelector('.iconProfile').innerHTML = `
+                        <a href="index.html" class="logout">Logout</a>
+                        <a href="profile.html" class="sign-icons">Profile</a>
+                    `;
+                } else {
+                    // If profile doesn't exist (user is not logged in), show sign up and sign in links
+                    document.querySelector('.iconProfile').innerHTML = `
+                        <a href="registration.html" class="sign-icons">Sign Up</a>
+                        <a href="login.html" class="sign-icons">Sign In</a>
+                    `;
+                }
+            });
+        </script>
+        
     </header>
     
     <!-- search form -->
