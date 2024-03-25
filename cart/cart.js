@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 };
 
                 let transactions = localStorage.getItem(`${playerEmail}transactionData`) ? localStorage.getItem(`${playerEmail}transactionData`).split(';') : [];
-                transactions.push(`${transactionData.dateTime},${transactionData.name},${transactionData.price}`);
+                transactions.push(`${transactionData.dateTime},${transactionData.name},${transactionData.price}`); // Save date, time, name, and price
                 localStorage.setItem(`${playerEmail}transactionData`, transactions.join(';'));
 
                 let updatedCartItems = localStorage.getItem(`${playerEmail}CartItems`).split(';');

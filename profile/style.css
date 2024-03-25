@@ -111,3 +111,6 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .transaction-row td {
     padding: 10px 20px; /* Adjust padding for better spacing */
 }
+.container{
+    margin-top: 70px;
+}

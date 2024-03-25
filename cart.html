@@ -34,7 +34,7 @@
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                const profile = localStorage.getItem("CurrentLogin");
+                const profile = localStorage.getItem("CurrentLoginEmail");
     
                 if (profile) {
                     // If profile exists (user is logged in), show sign out and profile links
@@ -123,7 +123,7 @@
     
             logoutButton.addEventListener('click', function(event) {
                 event.preventDefault();
-                localStorage.removeItem('CurrentLogin');
+                localStorage.removeItem('CurrentLoginEmail');
                 window.location.href = 'index.html';
             });
         });

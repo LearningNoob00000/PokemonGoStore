@@ -1,5 +1,3 @@
-// login.js
-
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('login-form');
     const emailInput = document.getElementById('email');
@@ -14,10 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const usersDataArray = usersDataString.split(';');
 
         // Find a user whose email and password match the entered ones
-        return usersDataArray.some(userData => {
-            const [storedEmail, storedPassword] = userData.split(',');
+        const userData = usersDataArray.find(userData => {
+            const [storedEmail, storedPassword, storedIgn] = userData.split(',');
             return email === storedEmail && password === storedPassword;
         });
+
+        // If user data is found, return an object with all information, otherwise return null
+        if (userData) {
+            const [storedEmail, storedPassword, storedTrainerId, storedIgn] = userData.split(',');
+            return { email: storedEmail, password: storedPassword, trainerId: storedTrainerId, ign: storedIgn };
+        } else {
+            return null;
+        }
     }
 
     // Event listener for form submission
@@ -29,9 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = passwordInput.value;
 
         // Verify the login credentials
-        if (verifyLogin(email, password)) {
+        const userData = verifyLogin(email, password);
+        if (userData) {
             // Redirect user to index.html if login is successful
-            localStorage.setItem('CurrentLogin', email);
+            localStorage.setItem('CurrentLoginEmail', userData.email); // Store user email in localStorage
+            localStorage.setItem('CurrentLoginPassword', userData.password); // Store user password in localStorage
+            localStorage.setItem('CurrentLoginIgn', userData.ign); // Store user IGN in localStorage
+            localStorage.setItem('CurrentLoginTrainderId', userData.trainerId); // Store user IGN in localStorage
+            
             alert('Login successful!');
             window.location.href = 'index.html';
         } else {
