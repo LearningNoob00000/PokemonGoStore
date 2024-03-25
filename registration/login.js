@@ -41,9 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('CurrentLoginEmail', userData.email); // Store user email in localStorage
             localStorage.setItem('CurrentLoginPassword', userData.password); // Store user password in localStorage
             localStorage.setItem('CurrentLoginIgn', userData.ign); // Store user IGN in localStorage
-            localStorage.setItem('CurrentLoginTrainderId', userData.trainerId); // Store user IGN in localStorage
-            
-            alert('Login successful!');
+            localStorage.setItem('CurrentLoginTrainerId', userData.trainerId); // Store user IGN in localStorage
             window.location.href = 'index.html';
         } else {
             // Display error message if login fails
