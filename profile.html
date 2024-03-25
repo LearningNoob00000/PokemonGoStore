@@ -278,20 +278,29 @@
     <script type="text/javascript">
 
     </script>
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const saveChangesBtn = document.querySelector('.btn-primary');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const saveChangesBtn = document.querySelector('.btn-primary');
 
-            saveChangesBtn.addEventListener('click', function() {
-                // Save all changes here
-                saveChanges();
-            });
+        saveChangesBtn.addEventListener('click', function() {
+            // Save all changes here
+            saveChanges();
+        });
 
-            function saveChanges() {
-                // Retrieve updated data
-                const updatedIgn = document.getElementById('ign').value;
-                const updatedEmail = document.getElementById('userEmail').value;
+        function saveChanges() {
+            // Retrieve updated data
+            const updatedIgn = document.getElementById('ign').value;
+            const updatedEmail = document.getElementById('userEmail').value;
 
+            // Retrieve existing data from localStorage
+            const currentIgn = localStorage.getItem('CurrentLoginIgn');
+            const currentEmail = localStorage.getItem('CurrentLoginEmail');
+
+            // Check if changes were made
+            if (updatedIgn === currentIgn && updatedEmail === currentEmail) {
+                // No changes made, notify the user
+                alert('No changes done.');
+            } else {
                 // Update data in localStorage
                 localStorage.setItem('CurrentLoginIgn', updatedIgn);
                 localStorage.setItem('CurrentLoginEmail', updatedEmail);
@@ -299,8 +308,10 @@
                 // Alert user about successful save
                 alert('Changes saved successfully!');
             }
-        });
-    </script>
+        }
+    });
+</script>
+
 </body>
 
 </html>
