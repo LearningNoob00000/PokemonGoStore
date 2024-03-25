@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="./homepage/homepage.css">
     <link rel="stylesheet" href="./homepage/footer.css">
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="./cart/cart.css">
     <script src="https://kit.fontawesome.com/2cfefaba62.js" crossorigin="anonymous"></script>
-    <script src="cart.js"></script>
+    <script src="./cart/cart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -40,7 +40,7 @@
                     // If profile exists (user is logged in), show sign out and profile links
                     document.querySelector('.iconProfile').innerHTML = `
                         <a href="index.html" class="logout">Logout</a>
-                        <a href="transation.html" class="sign-icons">Profile</a>
+                        <a href="profile.html" class="sign-icons">Profile</a>
                     `;
                 } else {
                     // If profile doesn't exist (user is not logged in), show sign up and sign in links

@@ -4,22 +4,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const transactionTable = document.getElementById('transaction-table');
 
-    const tableHeader = document.createElement('tr');
-    const headers = ['Date and Time', 'Name', 'Price'];
-    headers.forEach(headerText => {
-        const th = document.createElement('th');
-        th.textContent = headerText;
-        tableHeader.appendChild(th);
-    });
-    transactionTable.appendChild(tableHeader);
-
     transactions.forEach(transaction => {
         const [dateTime, name, price] = transaction.split(',');
         const row = document.createElement('tr');
+        row.classList.add('transaction-row'); // Add a class for styling
+
         const dateCell = document.createElement('td');
         dateCell.textContent = dateTime;
+
         const nameCell = document.createElement('td');
         nameCell.textContent = name;
+
         const priceCell = document.createElement('td');
         priceCell.textContent = price;
 
