@@ -62,8 +62,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 localStorage.setItem(`${playerEmail}CartItems`, updatedCartItems.join(';'));
 
                 itemContainer.remove(); // Remove the item from the cart view
-
+                
                 alert('Item removed from cart');
+                location.reload();
             });
 
             buttonContainer.appendChild(checkoutButton);

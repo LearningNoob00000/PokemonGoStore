@@ -60,7 +60,10 @@ footer {
     max-width: 800px; /* Adjust max-width as needed */
     padding: 0 20px;
 }
-
+.cart-page p{
+    font-size:30px;
+    align-items: center;
+}
 .cart-item {
     display: flex;
     align-items: center;
