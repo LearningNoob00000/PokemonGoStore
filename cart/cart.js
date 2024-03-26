@@ -25,11 +25,12 @@ document.addEventListener("DOMContentLoaded", function() {
             itemImage.src = image;
             itemImage.alt = name;
 
-            const checkoutButton = document.createElement('div');
-            checkoutButton.classList.add('checkout-button');
-            const button = document.createElement('button');
-            button.textContent = 'Check Out';
-            button.addEventListener('click', function() {
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('checkout-button');
+
+            const checkoutButton = document.createElement('button');
+            checkoutButton.textContent = 'Check Out';
+            checkoutButton.addEventListener('click', function() {
                 const currentDate = new Date();
                 const dateTime = currentDate.toLocaleString(); // Get date and time
                 const transactionData = {
@@ -52,14 +53,28 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert('Checkout clicked');
             });
 
-            checkoutButton.appendChild(button);
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.addEventListener('click', function() {
+                let updatedCartItems = localStorage.getItem(`${playerEmail}CartItems`).split(';');
+                const itemIndex = updatedCartItems.findIndex(item => item === `${name},${price},${image}`);
+                updatedCartItems.splice(itemIndex, 1);
+                localStorage.setItem(`${playerEmail}CartItems`, updatedCartItems.join(';'));
+
+                itemContainer.remove(); // Remove the item from the cart view
+
+                alert('Item removed from cart');
+            });
+
+            buttonContainer.appendChild(checkoutButton);
+            buttonContainer.appendChild(cancelButton);
 
             itemContainer.appendChild(itemImage);
             itemContainer.appendChild(itemName);
             itemContainer.appendChild(itemPrice);
+            itemContainer.appendChild(buttonContainer);
 
             cartContainer.appendChild(itemContainer);
-            cartContainer.appendChild(checkoutButton);
         });
     } else {
         const emptyCartMessage = document.createElement('p');
