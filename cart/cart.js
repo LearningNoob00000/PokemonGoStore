@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 location.reload(); // Reload the page to reflect changes
 
-                alert('Checkout clicked');
+                openAlert('Checkout Successful!', 'Your items have been successfully checked out.');
             });
 
             const cancelButton = document.createElement('button');
@@ -63,8 +63,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 itemContainer.remove(); // Remove the item from the cart view
                 
-                alert('Item removed from cart');
                 location.reload();
+                
+                openAlert('Item Removed', 'The item has been removed from your cart.');
             });
 
             buttonContainer.appendChild(checkoutButton);
@@ -83,3 +84,14 @@ document.addEventListener("DOMContentLoaded", function() {
         cartContainer.appendChild(emptyCartMessage);
     }
 });
+
+function openAlert(title, message) {
+    const customAlert = document.getElementById('custom-alert');
+    customAlert.querySelector('h2').textContent = title;
+    customAlert.querySelector('p').textContent = message;
+    customAlert.style.display = 'block';
+}
+
+function closeAlert() {
+    document.getElementById('custom-alert').style.display = 'none';
+}
